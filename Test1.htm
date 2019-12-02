@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="tabs.css">
+  <script>
+  var numOfCourses = 6;
+  function tabType(evt, AvgType) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(AvgType).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+  function createButton(){
+    var cBtn = document.createElement("BUTTON");
+    if(numOfCourses == 6){
+    document.getElementById('btnL1').appendChild(cBtn);
+    cBtn.innerHTML = "CLICK";
+    cBtn.id = "B1";
+    numOfCourses++;
+    var grabBtn = document.getElementById("B1");
+    grabBtn.addEventListener("click", createButton);
+    console.log(numOfCourses);
+  }
+  else if(numOfCourses < 8){
+    var cBr = document.createElement("br");
+    document.getElementById('brL1').appendChild(cBr);
+    document.getElementById('btnL2').appendChild(cBtn);
+    cBtn.innerHTML = "No";
+    numOfCourses++;
+  }
+}
+  function CalculateAvg(){
+  	  var grabV1 = Number(document.getElementById("v1").value);
+  	  var grabV2 = Number(document.getElementById("v2").value);
+  	  var grabV3 = Number(document.getElementById("v3").value);
+  		var grabV4 = Number(document.getElementById("v4").value);
+  		var grabV5 = Number(document.getElementById("v5").value);
+  		var grabV6 = Number(document.getElementById("v6").value);
+  	  var grabDisplay = document.getElementById("displayAvg");
+  	// make a loop that counts all of the grabVs
+  	// to do this I say we make a loop that counts the additional courses required
+  	// that loop value will be the divisor
+  if (true) {
+    grabDisplay.innerHTML = parseFloat(((grabV1+grabV2+grabV3+grabV4+grabV5+grabV6))/numOfCourses).toFixed(2) + "%";
+  }
+}
+// 3 Functions (in tandom)
+// triggered by "add class" button
+</script>
+</head>
+<body>
+  <h1>Average Calculator</h1>
+<div class="tab">
+  <button class="tablinks" onclick="tabType(event, 'Average')">Top 6 Average</button>
+  <button class="tablinks" onclick="tabType(event, 'KTCA')">KTCA Mark Distribution</button>
+</div>
+
+<div id="Average" class="tabcontent">
+  <h3><br><br/> Top 6 Average</h3>
+  <h4>Enter Your Course Marks</h4>
+	<div class="container">
+		<label for="unman"><b>Class 1</b></label>
+		<input type="number" placeholder="Enter Average" id="v1" name="uname" required>
+		<br><br/>
+		</div>
+	<div class="container">
+	  <label for="unman"><b>Class 2</b></label>
+	  <input type="text" placeholder="Enter Average" id="v2" name="uname" required>
+	  <br><br/>
+	</div>
+	<div class="container">
+		<label for="unman"><b>Class 3</b></label>
+	  <input type="text" placeholder="Enter Average" id="v3" name="uname" required>
+	  <br><br/>
+	  </div>
+	<div class="container">
+		<label for="unman"><b>Class 4</b></label>
+		<input type="text" placeholder="Enter Average" id="v4" name="uname" required>
+		<br><br/>
+  	</div>
+	<div class="container">
+		<label for="unman"><b>Class 5</b></label>
+		<input type="text" placeholder="Enter Average" id="v5" name="uname" required>
+		<br><br/>
+  	</div>
+	<div class="container">
+		<label for="unman"><b>Class 6</b></label>
+		<input type="text" placeholder="Enter Average" id="v6" name="uname" required>
+		<br><br/>
+		</div>
+  <button onclick = "createButton()"> Add Course </button>
+    <div id = "btnL1"> </div>
+    <div id = "brL1"> </div>
+    <div id = "btnL2"> </div>
+	<button onclick = "CalculateAvg()"> Calculate </button>
+  <h3> Average: </h3>
+  <h3 id = "displayAvg"> </h3>
+<!-- I want to create a quote within the average dsiplay, at least a "%" sign--->
+</div>
+
+<div id="KTCA" class="tabcontent">
+  <h3><br><br/>KTCA</h3>
+  <p>Enter the following marks</p>
+  <div class="row">
+  <div class="column">
+    <h2>Knowledge</h2>
+    <p>Mark Entry</p>
+  </div>
+  <div class="column">
+    <h2>Thinking</h2>
+    <p>Mark Entry</p>
+  </div>
+  <div class="column">
+    <h2>Communication</h2>
+    <p>Mark Entry</p>
+  </div>
+  <div class="column">
+    <h2>Application</h2>
+    <p>Mark Entry</p>
+  </div>
+</div>
+</div>
+
+</body>
+</html>
